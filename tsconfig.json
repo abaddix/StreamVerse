@@ -1,0 +1,35 @@
+{
+  "extends": "@react-native/typescript-config/tsconfig.json",
+
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+
+    "strict": true,
+
+    "jsx": "react-jsx",
+
+    "baseUrl": ".",
+
+    "paths": {
+      "@/*": ["src/*"]
+    },
+
+    "allowSyntheticDefaultImports": true,
+
+    "esModuleInterop": true,
+
+    "skipLibCheck": true,
+
+    "resolveJsonModule": true
+  },
+
+  "include": [
+    "src/**/*",
+    "App.tsx"
+  ],
+
+  "exclude": [
+    "node_modules"
+  ]
+}
