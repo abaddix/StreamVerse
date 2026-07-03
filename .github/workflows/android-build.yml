@@ -47,15 +47,10 @@ jobs:
         working-directory: android
         run: |
           set -e
-          # prefer project wrapper only if both the script AND its jar exist,
-          # otherwise fall back to the manually installed gradle
-          if [ -f ./gradlew ] && [ -f ./gradle/wrapper/gradle-wrapper.jar ]; then
-            chmod +x ./gradlew || true
-            ./gradlew assembleRelease --no-daemon
-          else
-            echo "gradle-wrapper.jar missing or gradlew absent — using system gradle instead"
-            gradle assembleRelease --no-daemon
-          fi
+          # Skip the project's gradlew wrapper entirely — it has been
+          # unreliable at resolving its own APP_HOME in this environment.
+          # We always use the Gradle installed manually in the step above.
+          gradle assembleRelease --no-daemon
 
       - name: Upload APKs
         if: success()
