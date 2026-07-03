@@ -47,11 +47,13 @@ jobs:
         working-directory: android
         run: |
           set -e
-          # prefer project wrapper if available, otherwise use installed gradle
-          if [ -f ./gradlew ]; then
+          # prefer project wrapper only if both the script AND its jar exist,
+          # otherwise fall back to the manually installed gradle
+          if [ -f ./gradlew ] && [ -f ./gradle/wrapper/gradle-wrapper.jar ]; then
             chmod +x ./gradlew || true
             ./gradlew assembleRelease --no-daemon
           else
+            echo "gradle-wrapper.jar missing or gradlew absent — using system gradle instead"
             gradle assembleRelease --no-daemon
           fi
 
