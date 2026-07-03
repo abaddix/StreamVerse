@@ -35,10 +35,10 @@ jobs:
 
       - name: Install Gradle
         run: |
-          curl -sSLO https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
-          unzip -q gradle-7.5.1-bin.zip -d gradle
-          echo "GRADLE_HOME=$(pwd)/gradle/gradle-7.5.1" >> $GITHUB_ENV
-          echo "PATH=$(pwd)/gradle/gradle-7.5.1/bin:$PATH" >> $GITHUB_ENV
+          curl -sSLO https://services.gradle.org/distributions/gradle-8.10.2-bin.zip
+          unzip -q gradle-8.10.2-bin.zip -d gradle
+          echo "GRADLE_HOME=$(pwd)/gradle/gradle-8.10.2" >> $GITHUB_ENV
+          echo "PATH=$(pwd)/gradle/gradle-8.10.2/bin:$PATH" >> $GITHUB_ENV
 
       - name: Install JS dependencies
         run: npm install --legacy-peer-deps
