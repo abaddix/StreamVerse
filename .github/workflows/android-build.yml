@@ -25,8 +25,12 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
         with:
-          api-level: 33
-          build-tools: 33.0.0
+          api-level: 35
+          build-tools: 35.0.0
+
+      - name: Install Android SDK packages
+        run: |
+          yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --install "platforms;android-35" "build-tools;35.0.0" "ndk;26.1.10909125" "cmake;3.22.1"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -50,7 +54,7 @@ jobs:
           # Skip the project's gradlew wrapper entirely — it has been
           # unreliable at resolving its own APP_HOME in this environment.
           # We always use the Gradle installed manually in the step above.
-          gradle assembleRelease --no-daemon
+          gradle assembleRelease --no-daemon --stacktrace --info -Pandroid.native.buildOutput=verbose
 
       - name: Upload APKs
         if: success()

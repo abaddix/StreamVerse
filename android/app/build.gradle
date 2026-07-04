@@ -15,10 +15,6 @@ android {
 
     namespace "com.streamverse"
 
-    buildFeatures {
-        prefab true
-    }
-
     defaultConfig {
         applicationId "com.streamverse"
         minSdkVersion rootProject.ext.minSdkVersion
